@@ -5,24 +5,22 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Anything that will read symptom data from a source
- * The important part is, the return value from the operation, which is a list of strings,
- * that may contain many duplications
- * 
- * The implementation does not need to order the list
+ * Une interface pour créer le fichier result.out
+ *
  * 
  */
 public interface ISymptomReader {
 	/**
-	 * If no data is available, return an empty List
-	 * @param string 
-	 * 
-	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
+	 * Mets le nom du chemin du fichier symptom dans la variable filepath
+	 * @param filepath  fichier à lire au sein de la méthode
 	 */
+	public void ReadSymptomDataFromFile (String filepath);
 	
-	
-	public void ReadSymptomDataFromFile ();
-	
+	/**
+	 * Créer le fichier result.out
+	 * @return retourne une liste dédoublonné des symptoms
+	 * @throws IOException
+	 */
 	public List<String> GetSymptoms () throws IOException;
 
 	
