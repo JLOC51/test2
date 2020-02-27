@@ -14,14 +14,14 @@ public interface ISymptomReader {
 	 * Mets le nom du chemin du fichier symptom dans la variable filepath
 	 * @param filepath  fichier à lire au sein de la méthode
 	 */
-	public void ReadSymptomDataFromFile (String filepath);
+	public void readSymptomDataFromFile (String filepath);
 	
 	/**
 	 * Créer le fichier result.out
 	 * @return retourne une liste dédoublonné des symptoms
 	 * @throws IOException
 	 */
-	public List<String> GetSymptoms () throws IOException;
+	public List<String> getSymptoms () throws IOException;
 
 	
 }

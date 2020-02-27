@@ -1,7 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.util.List;
-//import java.util.Set;
+
 
 
 public class Main {
@@ -11,7 +11,7 @@ public class Main {
 	
 	
 	/**
-	 * 
+	 * point d'entrée du code
 	 * @param args
 	 * @throws Exception
 	 */
@@ -21,17 +21,16 @@ public class Main {
 		AnalyticsCounter monFichierSymptom = new AnalyticsCounter();
 		
 		//Je joins le chemin de mon fichier symptom en utilisant ma méthode ReadSymptomDataFromFile
-		monFichierSymptom.ReadSymptomDataFromFile(fichierSymptomTexte);
+		monFichierSymptom.readSymptomDataFromFile(fichierSymptomTexte);
 		
 		//Appel de la méthode GetSymptom pour créer le fichier result.out
-		monFichierSortie=monFichierSymptom.GetSymptoms();
+		monFichierSortie=monFichierSymptom.getSymptoms();
 		
 		System.out.println(monFichierSortie);
 		System.out.println("Fichier généré");
 		
 		
 	}
-	
-	
+		
 
 }

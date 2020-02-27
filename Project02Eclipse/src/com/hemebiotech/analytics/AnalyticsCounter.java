@@ -30,7 +30,7 @@ public class AnalyticsCounter implements ISymptomReader {
 	 * 
 	 * @param filepath fichier à lire au sein de la méthode
 	 */
-	public void ReadSymptomDataFromFile(String filepath) {
+	public void readSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
 	}
 
@@ -40,8 +40,8 @@ public class AnalyticsCounter implements ISymptomReader {
 	 * @return retourne une liste dédoublonné des symptoms
 	 * @throws IOException
 	 */
-	public List<String> GetSymptoms() throws IOException {
-		ArrayList<String> result = new ArrayList<String>();
+	public List<String> getSymptoms() throws IOException {
+		ArrayList<String> result = new ArrayList();
 
 		// lecture du fichier symptom pour le mettre dans une arraylist
 		if (filepath != null) {
@@ -63,10 +63,10 @@ public class AnalyticsCounter implements ISymptomReader {
 		}
 
 		// Je dédoublonne Mes symptom
-		Set<String> mySet = new HashSet<String>(result);
+		Set<String> mySet = new HashSet(result);
 
 		// Créer une Nouvelle ArrayList à partir de Set
-		List<String> result2 = new ArrayList<String>(mySet);
+		List<String> result2 = new ArrayList(mySet);
 
 		// Je trie ma liste
 		Collections.sort(result2);
@@ -96,7 +96,5 @@ public class AnalyticsCounter implements ISymptomReader {
 		writer.close();
 
 		return result2;
-
 	}
-
 }
