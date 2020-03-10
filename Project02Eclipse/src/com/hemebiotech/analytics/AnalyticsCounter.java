@@ -1,15 +1,12 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
+import java.util.ArrayList;
+
+
+
+import java.util.TreeMap;
+
 
 /**
  * Classe du comptage du nombre d'occurence de symptoms qui implémente une
@@ -19,82 +16,46 @@ import java.util.Collections;
  *
  */
 
-public class AnalyticsCounter implements ISymptomReader {
+public class AnalyticsCounter implements ISymptomCounter {
 
-	private String filepath;
+	
 	private int nbOccurence;
-	private String s = System.getProperty("line.separator");
+	private ArrayList<String> pMonFichierSortie;
+	
+	
+	/**
+	 * 
+	 * @param pMonFichierSortie
+	 */
+	public AnalyticsCounter(ArrayList<String> pMonFichierSortie) {
+		this.pMonFichierSortie=pMonFichierSortie;
+	}
+
 
 	/**
 	 * Mets le nom du chemin du fichier symptom dans la variable filepath
 	 * 
 	 * @param filepath fichier à lire au sein de la méthode
 	 */
-	public void readSymptomDataFromFile(String filepath) {
-		this.filepath = filepath;
-	}
+	public TreeMap<String, Integer> countSymptom() {
+		TreeMap<String, Integer> result = new TreeMap<>();
+		
+		
+		for (int p = 0; p < pMonFichierSortie.size(); p++) {
 
-	/**
-	 * Créer le fichier result.out
-	 * 
-	 * @return retourne une liste dédoublonné des symptoms
-	 * @throws IOException
-	 */
-	public List<String> getSymptoms() throws IOException {
-		ArrayList<String> result = new ArrayList();
 
-		// lecture du fichier symptom pour le mettre dans une arraylist
-		if (filepath != null) {
-			BufferedReader reader = new BufferedReader(new FileReader(filepath));
-			try {
+			if (result.containsKey(pMonFichierSortie.get(p))){
+				nbOccurence=result.get(pMonFichierSortie.get(p));
+				result.put(pMonFichierSortie.get(p),(nbOccurence+1));
 				
-				String line = reader.readLine();
-
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				reader.close();
 			}
-		}
-
-		// Je dédoublonne Mes symptom
-		Set<String> mySet = new HashSet(result);
-
-		// Créer une Nouvelle ArrayList à partir de Set
-		List<String> result2 = new ArrayList(mySet);
-
-		// Je trie ma liste
-		Collections.sort(result2);
-
-		// Création du fichier de sortie result.out
-		FileWriter writer = new FileWriter("C:/Users/JeanLuc/eclipse-workspace/MonPremierProjetJava/src/result.out");
-
-		// Je compte le nombre d'occurrence et je l'écris dans le fichier de sortie
-		// result.out
-		for (int p = 0; p < result2.size(); p++) {
-			nbOccurence = 0;
-
-			for (int j = 0; j < result.size(); j++) {
-				if (result.get(j).equals(result2.get(p))) {
-
-					nbOccurence++;
-
-				}
-
+			else {
+				
+				result.put(pMonFichierSortie.get(p),1);
 			}
-
-			System.out.println(result2.get(p) + " : " + nbOccurence);
-			writer.write(result2.get(p) + " : " + nbOccurence + s);
-
+			
 		}
-
-		writer.close();
-
-		return result2;
-	}
+			return result;
+	}	
+	
 }

@@ -1,8 +1,8 @@
 ﻿package com.hemebiotech.analytics;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
+
 
 /**
  * Une interface pour créer le fichier result.out
@@ -10,18 +10,14 @@ import java.util.Set;
  * 
  */
 public interface ISymptomReader {
-	/**
-	 * Mets le nom du chemin du fichier symptom dans la variable filepath
-	 * @param filepath  fichier à lire au sein de la méthode
-	 */
-	public void readSymptomDataFromFile (String filepath);
+	
 	
 	/**
-	 * Créer le fichier result.out
+	 * Lecture des symptoms à mettre dans une ArrayList
 	 * @return retourne une liste dédoublonné des symptoms
 	 * @throws IOException
 	 */
-	public List<String> getSymptoms () throws IOException;
+	public ArrayList<String> getSymptoms () throws IOException;
 
 	
 }
